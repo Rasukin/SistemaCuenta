@@ -9,6 +9,6 @@ package Model;
  *
  * @author kafay
  */
-public enum TipoMoneda {
+public enum MoneyType {
     Colones, Dolares;
 }

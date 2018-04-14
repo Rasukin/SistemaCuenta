@@ -11,10 +11,10 @@ import java.sql.Timestamp;
  *
  * @author kafay
  */
-public class Cuenta {
+public class Account {
     private int idCuenta;
     private float saldo;
-    private TipoMoneda tipoMoneda;
+    private MoneyType tipoMoneda;
     private Timestamp fechaApertura;
     private float  TasaInteres;
 
@@ -34,11 +34,11 @@ public class Cuenta {
         this.saldo = saldo;
     }
 
-    public TipoMoneda getTipoMoneda() {
+    public MoneyType getTipoMoneda() {
         return tipoMoneda;
     }
 
-    public void setTipoMoneda(TipoMoneda tipoMoneda) {
+    public void setTipoMoneda(MoneyType tipoMoneda) {
         this.tipoMoneda = tipoMoneda;
     }
 
