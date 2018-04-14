@@ -70,4 +70,8 @@ public class Account {
     public void CobrarComision(){
         
     }
+    
+    public void pruebaEliminar(){
+        //fhfjhfff
+    }
 }
