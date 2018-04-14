@@ -5,13 +5,18 @@
  */
 package AccountsSystem;
 
+import Controller.ControllerVistaPrincipal;
+
 public class SistemaCuentas {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-    }
-    
+        Conexion conexion = new Conexion();
+        if(conexion.Conexion() != null){        //Si la conexion no es nula, entonces fue exitosa
+            Controller.ControllerVistaPrincipal controllerVistaPrincipal = new ControllerVistaPrincipal();
+            controllerVistaPrincipal.initInterface();
+        }
+    }    
 }
