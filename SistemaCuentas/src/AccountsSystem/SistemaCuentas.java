@@ -5,13 +5,16 @@
  */
 package AccountsSystem;
 
+import Controller.ControllerVistaPrincipal;
+
 public class SistemaCuentas {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        ControllerVistaPrincipal controladorVistaPrincipal = new ControllerVistaPrincipal();//.getSingletonInstance();
+        controladorVistaPrincipal.initInterface();
     }
     
 }

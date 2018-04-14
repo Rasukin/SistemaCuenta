@@ -81,10 +81,10 @@ public class VistaPrincipal extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCrearCuenta;
-    private javax.swing.JButton btnCrearUsuario;
-    private javax.swing.JButton btnVerCuentas;
+    public javax.swing.JButton btnCrearCuenta;
+    public javax.swing.JButton btnCrearUsuario;
+    public javax.swing.JButton btnVerCuentas;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tbClientes;
+    public javax.swing.JTable tbClientes;
     // End of variables declaration//GEN-END:variables
 }

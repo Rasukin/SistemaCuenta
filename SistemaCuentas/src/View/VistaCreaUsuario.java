@@ -95,13 +95,13 @@ public class VistaCreaUsuario extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCrear;
-    private javax.swing.JButton btnSalir;
+    public javax.swing.JButton btnCrear;
+    public javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField txtApellidos;
-    private javax.swing.JTextField txtCedula;
-    private javax.swing.JTextField txtNombre;
+    public javax.swing.JTextField txtApellidos;
+    public javax.swing.JTextField txtCedula;
+    public javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
