@@ -67,7 +67,10 @@ public class Cuenta {
     public void generarRegistro(){
         
     }
-    public void CobrarComision(){
+    public void cobrarComision(){
+        
+    }
+    public void pagoInteres(){
         
     }
 }
