@@ -5,11 +5,7 @@
  */
 package Model;
 
-/**
- *
- * @author kafay
- */
-public class Client {
+public class Cliente {
     private String cedula;
     private String nombre;
     private String apellida;
@@ -37,6 +33,5 @@ public class Client {
     public void setApellida(String apellida) {
         this.apellida = apellida;
     }
-    
-    
+
 }

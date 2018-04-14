@@ -7,14 +7,10 @@ package Model;
 
 import java.sql.Timestamp;
 
-/**
- *
- * @author kafay
- */
-public class Account {
+public abstract class Cuenta {
     private int idCuenta;
     private float saldo;
-    private MoneyType tipoMoneda;
+    private TipoMoneda tipoMoneda;
     private Timestamp fechaApertura;
     private float  TasaInteres;
 
@@ -34,11 +30,11 @@ public class Account {
         this.saldo = saldo;
     }
 
-    public MoneyType getTipoMoneda() {
+    public TipoMoneda getTipoMoneda() {
         return tipoMoneda;
     }
 
-    public void setTipoMoneda(MoneyType tipoMoneda) {
+    public void setTipoMoneda(TipoMoneda tipoMoneda) {
         this.tipoMoneda = tipoMoneda;
     }
 
@@ -70,11 +66,6 @@ public class Account {
     public void cobrarComision(){
         
     }
-    public void pagoInteres(){
-        
-    }
     
-    public void pruebaEliminar(){
-        //fhfjhfff
-    }
+    public abstract void pagoInteres();
 }

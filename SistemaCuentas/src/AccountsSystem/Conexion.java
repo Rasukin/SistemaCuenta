@@ -5,13 +5,10 @@
  */
 package AccountsSystem;
 
-public class SistemaCuentas {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+/**
+ *
+ * @author Francisco
+ */
+public class Conexion {
     
 }
