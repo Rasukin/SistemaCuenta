@@ -23,19 +23,68 @@ public class VistaPrincipal extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnVerCuentas = new javax.swing.JButton();
+        btnCrearCuenta = new javax.swing.JButton();
+        btnCrearUsuario = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbClientes = new javax.swing.JTable();
+
+        btnVerCuentas.setText("Ver cuentas del usuario");
+
+        btnCrearCuenta.setText("Crear cuenta");
+
+        btnCrearUsuario.setText("Crear usuario");
+
+        tbClientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Nombre", "Apellidos", "Cedula"
+            }
+        ));
+        jScrollPane2.setViewportView(tbClientes);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnVerCuentas)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCrearCuenta)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCrearUsuario)
+                        .addGap(13, 13, 13)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnVerCuentas)
+                    .addComponent(btnCrearCuenta)
+                    .addComponent(btnCrearUsuario))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCrearCuenta;
+    private javax.swing.JButton btnCrearUsuario;
+    private javax.swing.JButton btnVerCuentas;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tbClientes;
     // End of variables declaration//GEN-END:variables
 }

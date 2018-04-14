@@ -8,11 +8,11 @@ package Model;
 import java.sql.Timestamp;
 
 public abstract class Cuenta {
-    private int idCuenta;
-    private float saldo;
-    private TipoMoneda tipoMoneda;
-    private Timestamp fechaApertura;
-    private float  TasaInteres;
+    protected int idCuenta;
+    protected float saldo;
+    protected TipoMoneda tipoMoneda;
+    protected Timestamp fechaApertura;
+    protected float  TasaInteres;
 
     public int getIdCuenta() {
         return idCuenta;
