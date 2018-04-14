@@ -5,6 +5,6 @@
  */
 package Controller;
 
-public class ControllerVistaCuentas {
+public class ControllerVistaMovimientos {
     
 }

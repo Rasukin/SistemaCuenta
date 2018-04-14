@@ -5,10 +5,6 @@
  */
 package Controller;
 
-/**
- *
- * @author kafay
- */
 public class ControllerVistaCreaUsuario {
     
 }

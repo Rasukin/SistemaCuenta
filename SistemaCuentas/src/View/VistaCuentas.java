@@ -31,6 +31,7 @@ public class VistaCuentas extends javax.swing.JPanel {
         tbCuentas = new javax.swing.JTable();
         btnListarMovimientos = new javax.swing.JButton();
         btnGenerarMovimientos = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         tbCuentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -47,7 +48,10 @@ public class VistaCuentas extends javax.swing.JPanel {
 
         btnListarMovimientos.setText("Listar movimientos de la cuenta");
 
-        btnGenerarMovimientos.setText("Generar moviemientos aleatorios a la cuenta");
+        btnGenerarMovimientos.setText("Generar movimientos aleatorios a la cuenta");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("Listado de cuentas del usuario seleccionado");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -62,19 +66,24 @@ public class VistaCuentas extends javax.swing.JPanel {
                         .addGap(106, 106, 106)
                         .addComponent(btnListarMovimientos)
                         .addGap(80, 80, 80)
-                        .addComponent(btnGenerarMovimientos)))
+                        .addComponent(btnGenerarMovimientos))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(20, 20, 20)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnListarMovimientos)
                     .addComponent(btnGenerarMovimientos))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -82,6 +91,7 @@ public class VistaCuentas extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGenerarMovimientos;
     private javax.swing.JButton btnListarMovimientos;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbCuentas;
     // End of variables declaration//GEN-END:variables
