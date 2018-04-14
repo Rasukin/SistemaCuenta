@@ -9,7 +9,7 @@ package Model;
  *
  * @author kafay
  */
-public class Cliente {
+public class Client {
     private String cedula;
     private String nombre;
     private String apellida;
