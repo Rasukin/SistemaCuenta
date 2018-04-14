@@ -6,10 +6,12 @@
 package Controller;
 
 import View.MainFrame;
+import View.VistaCreaUsuario;
 import View.VistaPrincipal;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JFrame;
 
 public class ControllerVistaPrincipal implements ActionListener{
     private MainFrame mainFrame;
@@ -41,6 +43,7 @@ public class ControllerVistaPrincipal implements ActionListener{
     }
     
     public void initInterface(){
+        //conexion = new Conexion();
         mainFrame.setLayout(new BorderLayout());
         mainFrame.getContentPane().add(vistaPrincipal);
         mainFrame.pack();
@@ -48,7 +51,24 @@ public class ControllerVistaPrincipal implements ActionListener{
         mainFrame.setVisible(true);
     }
     
+    @Override
     public void actionPerformed(ActionEvent e){
-    
+    if(vistaPrincipal.btnCrearCuenta == e.getSource()){
+            
+        }
+        if(vistaPrincipal.btnCrearUsuario == e.getSource()){
+            VistaCreaUsuario vistaCreaUsuario = new VistaCreaUsuario();
+            ControllerVistaCreaUsuario controladorCreaUsuario = new ControllerVistaCreaUsuario();
+            controladorCreaUsuario.initInterface();
+            JFrame frame = new JFrame();
+            frame.setLayout(new BorderLayout());
+            frame.getContentPane().add(vistaCreaUsuario);
+            frame.pack();
+            frame.setResizable(false);
+            
+        }
+        if(vistaPrincipal.btnVerCuentas == e.getSource()){
+            
+        }
     }
 }

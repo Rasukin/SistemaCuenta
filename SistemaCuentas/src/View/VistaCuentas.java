@@ -89,10 +89,10 @@ public class VistaCuentas extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGenerarMovimientos;
-    private javax.swing.JButton btnListarMovimientos;
+    public javax.swing.JButton btnGenerarMovimientos;
+    public javax.swing.JButton btnListarMovimientos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tbCuentas;
+    public javax.swing.JTable tbCuentas;
     // End of variables declaration//GEN-END:variables
 }
