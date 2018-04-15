@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package AccountsSystem;
 
+import Model.Cliente;
+import Model.Cuenta;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.sql.Connection;
@@ -21,7 +18,7 @@ public class Conexion {
     public Connection Conexion() {
         try {
             Class.forName("org.postgresql.Driver");
-            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/SistemaCuentas","postgres","postgrespsw");
+            this.conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/P1_Pruebas","postgres","12345678");
             System.out.println("Opened database SistemaCuentas successfully");
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Error en Conexion: " + e);
@@ -30,12 +27,19 @@ public class Conexion {
         return conn;
     }
     
-    public void CrearCuenta(String tipoCuenta, String tipoMoneda, Timestamp fechaApertura, Float tasaInteres){
-    
+    public boolean CrearCuenta(Cuenta cuenta, Timestamp fechaApertura){ //String tipoCuenta, String tipoMoneda, Timestamp fechaApertura, Float tasaInteres, Cuenta cuenta){
+        String Cuenta = cuenta.getTipoCuenta().toString();
+        String Moneda = cuenta.getTipoMoneda().toString();
+        Timestamp fecha = fechaApertura;
+        Float tasaInteres = cuenta.getTasaInteres();
+        return true;
     }
     
-    public void CrearUsuario(String cedula, String nombre, String apellidos){
-    
+    public boolean CrearUsuario(Cliente cliente){//String cedula, String nombre, String apellidos){
+        int cedulta = cliente.getCedula();
+        String nombre = cliente.getNombre();
+        String apellidos = cliente.getApellido();
+        return true;
     }  
     
     public ArrayList<ArrayList<String>> ListarUsuarios(){
