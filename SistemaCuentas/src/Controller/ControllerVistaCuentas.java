@@ -49,8 +49,6 @@ public class ControllerVistaCuentas implements ActionListener{
         }
         
         if(vistaCuenta.btnGenerarMovimientos == e.getSource()){
-            
-            
             System.out.println("btnGenerarMovimientos");
         }
         
