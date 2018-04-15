@@ -12,8 +12,16 @@ public abstract class Cuenta {
     protected TipoCuenta tipoCuenta;
     protected TipoMoneda tipoMoneda;
     protected Timestamp fechaApertura;
-    protected float  TasaInteres;
+    protected float  tasaInteres;
     protected float saldo;  
+    
+    public Cuenta(TipoCuenta tipoCuenta, TipoMoneda tipoMoneda, Timestamp fechaApertura, float tasaInteres, float saldo){
+        this.tipoCuenta = tipoCuenta;
+        this.tipoMoneda = tipoMoneda;
+        this.fechaApertura = fechaApertura;
+        this.tasaInteres = tasaInteres;
+        this.saldo = saldo;
+    }
 
     public Cuenta(TipoCuenta tipoCuenta) {
         this.tipoCuenta = tipoCuenta;
@@ -52,11 +60,11 @@ public abstract class Cuenta {
     }      
 
     public float getTasaInteres() {
-        return TasaInteres;
+        return tasaInteres;
     }
 
-    public void setTasaInteres(float TasaInteres) {
-        this.TasaInteres = TasaInteres;
+    public void setTasaInteres(float tasaInteres) {
+        this.tasaInteres = tasaInteres;
     }
     
     public float getSaldo() {

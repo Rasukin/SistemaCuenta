@@ -46,11 +46,11 @@ public class VistaPrincipal extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Cédula", "Nombre", "Apellidos"
+                "Id", "Cédula", "Nombre", "Apellidos"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                true, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

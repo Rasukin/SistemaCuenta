@@ -1,12 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
+import AccountsSystem.Conexion;
 import View.MainFrame;
 import View.VistaCreaUsuario;
+import View.VistaCrearCuenta;
+import View.VistaCuentas;
 import View.VistaPrincipal;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -17,7 +15,7 @@ public class ControllerVistaPrincipal implements ActionListener{
     private MainFrame mainFrame;
     private VistaPrincipal vistaPrincipal;
     private static ControllerVistaPrincipal controllerVistaPrincipal;   
-    
+    public Conexion conexion;// = new Conexion();
     
     public static ControllerVistaPrincipal getSingletonInstance () {
         if(controllerVistaPrincipal == null) {
@@ -43,7 +41,7 @@ public class ControllerVistaPrincipal implements ActionListener{
     }
     
     public void initInterface(){
-        //conexion = new Conexion();
+        conexion = new Conexion();
         mainFrame.setLayout(new BorderLayout());
         mainFrame.getContentPane().add(vistaPrincipal);
         mainFrame.pack();
@@ -68,7 +66,24 @@ public class ControllerVistaPrincipal implements ActionListener{
             
         }
         if(vistaPrincipal.btnVerCuentas == e.getSource()){
-            
+            VistaCuentas vistaCuentas = new VistaCuentas();
+            ControllerVistaCuentas controladorVistaCuentas = new ControllerVistaCuentas();
+            //controladorVistaCuentas.initInferface();
+            JFrame frame = new JFrame();
+            frame.setLayout(new BorderLayout());
+            frame.getContentPane().add(vistaCuentas);
+            frame.pack();
+            frame.setResizable(false);
+        }
+        if(vistaPrincipal.btnCrearCuenta == e.getSource()){
+            VistaCrearCuenta vistaCrearCuenta = new VistaCrearCuenta();
+            ControllerVistaCrearCuenta controladorVistaCrearCuenta = new ControllerVistaCrearCuenta();
+            controladorVistaCrearCuenta.initInterface();
+            JFrame frame = new JFrame();
+            frame.setLayout(new BorderLayout());
+            frame.getContentPane().add(vistaCrearCuenta);
+            frame.pack();
+            frame.setResizable(false);
         }
     }
 }

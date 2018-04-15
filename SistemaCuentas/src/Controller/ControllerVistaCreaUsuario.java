@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
+import AccountsSystem.Conexion;
 import Model.Cliente;
 import View.MainFrame;
 import View.VistaCreaUsuario;
@@ -17,7 +13,7 @@ public class ControllerVistaCreaUsuario implements ActionListener{
     private static ControllerVistaCreaUsuario controladorCreaUsuario;
     private MainFrame mainFrame;
     private VistaCreaUsuario vistaCreaUsuario;
-    //public Conexion conexion;
+    public Conexion conexion;
     
     public static ControllerVistaCreaUsuario getSingletonInstance() {
         if (controladorCreaUsuario == null) {
@@ -42,7 +38,7 @@ public class ControllerVistaCreaUsuario implements ActionListener{
     }
     
     public void initInterface() {
-        //conexion = new Conexion();
+        conexion = new Conexion();
         mainFrame.setLayout(new BorderLayout());
         mainFrame.getContentPane().add(vistaCreaUsuario);
         mainFrame.pack();
@@ -61,10 +57,13 @@ public class ControllerVistaCreaUsuario implements ActionListener{
                 String apellidos = vistaCreaUsuario.txtApellidos.getText();
                 int cedula = Integer.parseInt(vistaCreaUsuario.txtCedula.getText());
                 Cliente cliente = new Cliente(cedula, nombre, apellidos);
-                JOptionPane.showMessageDialog(null, "Cliente agregado al sistema");
-                //if(conexion.InsertaCliente(cliente)){
-                    System.out.println(cliente.getApellido()+" "+cliente.getNombre()+" "+cliente.getCedula());
-                //}
+                if(conexion.CrearUsuario(cliente)){
+                    System.out.println(cliente.getApellido()+" "+cliente.getNombre()+" "+cliente.getCedula());                    
+                    JOptionPane.showMessageDialog(null, "Cliente agregado al sistema");
+                    vistaCreaUsuario.txtApellidos.setText("");
+                    vistaCreaUsuario.txtCedula.setText("");
+                    vistaCreaUsuario.txtNombre.setText("");
+                }
             }  
         }
         if(vistaCreaUsuario.btnSalir == e.getSource()) {

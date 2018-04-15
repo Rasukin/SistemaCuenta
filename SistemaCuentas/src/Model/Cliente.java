@@ -6,6 +6,15 @@
 package Model;
 
 public class Cliente {
+    private int idCliente;
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
     private int cedula;
     private String nombre;
     private String apellido;
