@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.TipoMovimiento;
 import View.MainFrame;
 import View.VistaCuentas;
 import View.VistaMovimientos;
@@ -7,6 +8,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
+import java.util.Random;
 
 public class ControllerVistaCuentas implements ActionListener{
     private static ControllerVistaCuentas controladorCuenta;
@@ -71,11 +73,25 @@ public class ControllerVistaCuentas implements ActionListener{
         if(vistaCuenta.btnGenerarMovimientos == e.getSource()){
             System.out.println("btnGenerarMovimientos");
             
+            int filaSeleccionada = vistaCuenta.tbCuentas.getSelectedRow();
+            try{
+                String value = (String) vistaCuenta.tbCuentas.getValueAt(filaSeleccionada, 0);
+                System.out.println(value);
+            } catch(Exception ex){
+                System.out.println("Error en: \n" + ex);
+            }
+            
             final float saldoMin = 5000;
             final float saldoMax = 1000000;
-            float randSaldo = saldoMin + (float)Math.random() * (saldoMax - saldoMin);
+            final int movMax = 50;
+            final int movMin = 5;
             
-            System.out.println(String.valueOf(randSaldo));
+            float randSaldo = saldoMin + (float)Math.random() * (saldoMax - saldoMin);
+            int randCantMov = movMin + (int) (Math.random() * ((1 + movMax) - movMin));
+            Random random = new Random();
+            int tipoMov = random.nextInt(TipoMovimiento.values().length + 1);
+            
+            
         }
         
     }
