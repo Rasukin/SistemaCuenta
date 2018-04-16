@@ -6,7 +6,10 @@
 package Model;
 
 public class Cliente {
-    private int idCliente;
+    private int idCliente;    
+    private String cedula;
+    private String nombre;
+    private String apellido;
 
     public int getIdCliente() {
         return idCliente;
@@ -15,21 +18,18 @@ public class Cliente {
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }
-    private int cedula;
-    private String nombre;
-    private String apellido;
-
-    public Cliente(int cedula, String nombre, String apellido){
+    
+    public Cliente(String cedula, String nombre, String apellido){
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
     }
     
-    public int getCedula() {
+    public String getCedula() {
         return cedula;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(String cedula) {
         this.cedula = cedula;
     }
 
