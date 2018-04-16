@@ -58,7 +58,6 @@ public class ControllerVistaCreaUsuario implements ActionListener{
                 String cedula = vistaCreaUsuario.txtCedula.getText();
                 Cliente cliente = new Cliente(cedula, nombre, apellidos);
                 if(conexion.CrearCliente(cliente)){
-                    System.out.println(cliente.getApellido()+" "+cliente.getNombre()+" "+cliente.getCedula());                    
                     JOptionPane.showMessageDialog(null, "Cliente agregado al sistema");
                     vistaCreaUsuario.txtApellidos.setText("");
                     vistaCreaUsuario.txtCedula.setText("");
