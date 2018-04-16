@@ -65,21 +65,19 @@ public abstract class Cuenta {
         this.saldo = saldo;
     }
     
-    public void credito(){
-        
+    public void credito(float monto){
+        this.saldo = this.saldo + monto;
     }
     
-    public void debito(){
-        
+    public void debito(float monto){
+        this.saldo = this.saldo - monto;
     }
     
     public void generarRegistro(){
         
     }
     
-    public void cobrarComision(){
-        
-    }
+    public abstract void cobrarComision();
     
     public abstract void pagoInteres();
 }

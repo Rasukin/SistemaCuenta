@@ -23,7 +23,7 @@ public class Conexion {
     public Connection Conexion() {
         try {
             Class.forName("org.postgresql.Driver");
-            this.conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Subasta_DB","postgres","postgres");
+            this.conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/SistemaCuentas","postgres","12345678");
             System.out.println("Opened database SistemaCuentas successfully");
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Error en Conexion: " + e);
@@ -35,7 +35,7 @@ public class Conexion {
     public Conexion(){
         try {
             Class.forName("org.postgresql.Driver");
-            this.conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Subasta_DB","postgres","postgres");
+            this.conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/SistemaCuentas","postgres","12345678");
         } catch (ClassNotFoundException | SQLException e) {
         }    
     }

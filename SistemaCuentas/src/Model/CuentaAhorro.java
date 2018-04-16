@@ -25,12 +25,12 @@ public class CuentaAhorro extends Cuenta{
         this.valorComision = valorComision;        
     }
     
-    public void CobrarComision(){
-        
+    public void cobrarComision(){
+        this.saldo = this.saldo - (this.saldo * this.valorComision);
     }
     
     public void pagoInteres(){
-        
+        this.saldo = this.saldo + (this.saldo * this.tasaInteres);
     }
 
     public float getValorComision() {

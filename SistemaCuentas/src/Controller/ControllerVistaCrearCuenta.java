@@ -18,6 +18,7 @@ public class ControllerVistaCrearCuenta implements ActionListener{
     private MainFrame mainFrame;
     private VistaCrearCuenta vistaCrearCuenta;
     public Conexion conexion;
+    public int idCliente;
     
     public static ControllerVistaCrearCuenta getSingletonInstance() {
         if (controladorCrearCuenta == null) {
@@ -41,7 +42,7 @@ public class ControllerVistaCrearCuenta implements ActionListener{
         this.mainFrame = mainFrame;
     }
     
-    public void initInterface() {
+    public void initInterface(int idCliente) {
         conexion = new Conexion();
         mainFrame.setLayout(new BorderLayout());
         mainFrame.getContentPane().add(vistaCrearCuenta);
@@ -53,30 +54,33 @@ public class ControllerVistaCrearCuenta implements ActionListener{
         mainFrame.setResizable(false);
         mainFrame.setVisible(true);
         mainFrame.setDefaultCloseOperation(1);
+        this.idCliente = idCliente;
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
         if(vistaCrearCuenta.btnCrear == e.getSource()){
             if(vistaCrearCuenta.btnCrear == e.getSource()){
-                TipoCuenta tipoCuenta = (TipoCuenta) vistaCrearCuenta.cbTipoCuenta.getSelectedItem();
-                TipoMoneda tipoMoneda = (TipoMoneda) vistaCrearCuenta.cbTipoMoneda.getSelectedItem();
+                TipoCuenta tipoCuenta = TipoCuenta.valueOf(vistaCrearCuenta.cbTipoCuenta.getSelectedItem().toString());
+                TipoMoneda tipoMoneda = TipoMoneda.valueOf(vistaCrearCuenta.cbTipoMoneda.getSelectedItem().toString());
                 Timestamp fechaApertura = new Timestamp(System.currentTimeMillis());
-                float tasaInteres = (float) 1.65;
+                float tasaInteresAhorro = (float) 0.17;
+                float tasaInteresCorriente = (float) 0.10;
                 float valorComision = (float) (12/100);
                 if(tipoCuenta == TipoCuenta.Ahorro){
-                    CuentaAhorro cuentaAhorro = new CuentaAhorro(tipoCuenta, tipoMoneda, fechaApertura, tasaInteres, 0, valorComision);
-                    if(conexion.CrearCuentaAhorro(cuentaAhorro)){
+                    CuentaAhorro cuentaAhorro = new CuentaAhorro(tipoCuenta, tipoMoneda, fechaApertura, tasaInteresAhorro, 10000, valorComision);
+                    if(conexion.CrearCuentaAhorro(cuentaAhorro, idCliente)){
                         JOptionPane.showMessageDialog(null, "Cuenta de ahorros creado");
                     }
                 }else{
-                    CuentaCorriente cuentaCorriente = new CuentaCorriente(tipoCuenta, tipoMoneda, fechaApertura, tasaInteres, 0, valorComision);
-                    if(conexion.CrearCuentaCorriente(cuentaCorriente)){
+                    CuentaCorriente cuentaCorriente = new CuentaCorriente(tipoCuenta, tipoMoneda, fechaApertura, tasaInteresCorriente, 10000, 10);
+                    if(conexion.CrearCuentaCorriente(cuentaCorriente, idCliente)){
                         JOptionPane.showMessageDialog(null, "Cuenta corriente creado");
                     }
                 }
             }
         }
+        
         if(vistaCrearCuenta.btnSalir == e.getSource()){
             this.mainFrame.dispose();
         }

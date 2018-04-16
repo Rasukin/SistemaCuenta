@@ -51,8 +51,7 @@ public class ControllerVistaPrincipal implements ActionListener{
         mainFrame.getContentPane().add(vistaPrincipal);
         mainFrame.pack();
         mainFrame.setResizable(true);
-        mainFrame.setVisible(true);
-        
+        mainFrame.setVisible(true);        
         vistaPrincipal.tbClientes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         conexion = new Conexion();
         ArrayList<Cliente> clientes = conexion.ListarUsuarios();
@@ -67,7 +66,7 @@ public class ControllerVistaPrincipal implements ActionListener{
     if(vistaPrincipal.btnCrearCuenta == e.getSource()){
             
         }
-        if(vistaPrincipal.btnCrearUsuario == e.getSource()){
+        if(vistaPrincipal.btnCrearUsuario == e.getSource()){            
             VistaCreaUsuario vistaCreaUsuario = new VistaCreaUsuario();
             ControllerVistaCreaUsuario controladorCreaUsuario = new ControllerVistaCreaUsuario();
             controladorCreaUsuario.initInterface();
@@ -89,9 +88,11 @@ public class ControllerVistaPrincipal implements ActionListener{
             frame.setResizable(false);
         }
         if(vistaPrincipal.btnCrearCuenta == e.getSource()){
+            int selectedRow = vistaPrincipal.tbClientes.getSelectedRow();
+            int idCliente = Integer.parseInt(this.model.getValueAt(selectedRow, 0).toString());
             VistaCrearCuenta vistaCrearCuenta = new VistaCrearCuenta();
             ControllerVistaCrearCuenta controladorVistaCrearCuenta = new ControllerVistaCrearCuenta();
-            controladorVistaCrearCuenta.initInterface();
+            controladorVistaCrearCuenta.initInterface(idCliente);
             JFrame frame = new JFrame();
             frame.setLayout(new BorderLayout());
             frame.getContentPane().add(vistaCrearCuenta);

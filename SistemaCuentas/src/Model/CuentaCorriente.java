@@ -24,13 +24,13 @@ public class CuentaCorriente extends Cuenta{
         this.limiteTransaccion = limiteTransaccion;        
     }
     
-    public void CobrarComision(){
-        
+    public void cobrarComision(){
+        this.saldo = this.saldo - (this.saldo * (float) 0.2);
     }
    
     
     public void pagoInteres(){
-        
+        this.saldo = this.saldo + (this.saldo * this.tasaInteres);
     }
 
     public int getLimiteTransaccion() {
