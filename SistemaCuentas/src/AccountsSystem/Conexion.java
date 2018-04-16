@@ -36,17 +36,17 @@ public class Conexion {
     }
     
     public boolean CrearUsuario(Cliente cliente){//String cedula, String nombre, String apellidos){
-        int cedulta = cliente.getCedula();
+        String cedulta = cliente.getCedula();
         String nombre = cliente.getNombre();
         String apellidos = cliente.getApellido();
+        
         return true;
     }  
     
-    public ArrayList<ArrayList<String>> ListarUsuarios(){
-        ArrayList<String> result = new ArrayList<String>();
-        ArrayList<ArrayList<String>> resultOut = new ArrayList<ArrayList<String>>();
+    public ArrayList<Cliente> ListarUsuarios(){
+        ArrayList<Cliente> result = new ArrayList<Cliente>();
         
-        return resultOut;
+        return result;
     }
     
     public ArrayList<ArrayList<String>> ListarCuentas(){
