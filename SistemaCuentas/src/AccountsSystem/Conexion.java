@@ -5,6 +5,7 @@ import Model.Cuenta;
 import Model.CuentaAhorro;
 import Model.CuentaCorriente;
 import Model.Movimiento;
+import Model.TipoMovimiento;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.sql.Connection;
@@ -22,11 +23,7 @@ public class Conexion {
     public Connection Conexion() {
         try {
             Class.forName("org.postgresql.Driver");
-<<<<<<< HEAD
-            this.conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/P1_Pruebas","postgres","12345678");
-=======
             this.conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Subasta_DB","postgres","postgres");
->>>>>>> Branch1.2
             System.out.println("Opened database SistemaCuentas successfully");
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Error en Conexion: " + e);
@@ -38,11 +35,7 @@ public class Conexion {
     public Conexion(){
         try {
             Class.forName("org.postgresql.Driver");
-<<<<<<< HEAD
-            this.conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/P1_Prubeas","postgres","12345678");
-=======
             this.conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Subasta_DB","postgres","postgres");
->>>>>>> Branch1.2
         } catch (ClassNotFoundException | SQLException e) {
         }    
     }
@@ -67,11 +60,12 @@ public class Conexion {
         return false;
     }
     
-    public boolean CrearCuentaAhorro(CuentaAhorro cuentaAhorro, int idCliente, float valorComision, int limiteTransaccion){
+    public boolean CrearCuentaAhorro(CuentaAhorro cuentaAhorro, int idCliente){
         String Cuenta = cuentaAhorro.getTipoCuenta().toString();
         String moneda = cuentaAhorro.getTipoMoneda().toString();
         Timestamp fecha = cuentaAhorro.getFechaApertura();
         Float tasaInteres = cuentaAhorro.getTasaInteres();
+        Float valorComision = cuentaAhorro.getValorComision();
         try {            
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM crearcuenta(?,?,?,?,?,?,?)");
             pstmt.setString(1, Cuenta);
@@ -80,7 +74,7 @@ public class Conexion {
             pstmt.setFloat(4, tasaInteres);
             pstmt.setInt(5, idCliente);
             pstmt.setFloat(6, valorComision);
-            pstmt.setInt(7, limiteTransaccion);
+            pstmt.setInt(7, -1);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {  
                 System.out.println("Cuenta añadida a base de datos");
@@ -92,11 +86,12 @@ public class Conexion {
         return false;      
     }  
 
-    public boolean CrearCuentaCorriente(CuentaCorriente cuenta, int idCliente, float valorComision, int limiteTransaccion){
+    public boolean CrearCuentaCorriente(CuentaCorriente cuenta, int idCliente){
         String Cuenta = cuenta.getTipoCuenta().toString();
         String moneda = cuenta.getTipoMoneda().toString();
         Timestamp fecha = cuenta.getFechaApertura();
         Float tasaInteres = cuenta.getTasaInteres();
+        int limiteTransaccion = cuenta.getLimiteTransaccion();
         try {            
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM crearcuenta(?,?,?,?,?,?,?)");
             pstmt.setString(1, Cuenta);
@@ -104,7 +99,7 @@ public class Conexion {
             pstmt.setTimestamp(3, fecha);
             pstmt.setFloat(4, tasaInteres);
             pstmt.setInt(5, idCliente);
-            pstmt.setFloat(6, valorComision);
+            pstmt.setFloat(6, -1);
             pstmt.setInt(7, limiteTransaccion);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {  
@@ -170,7 +165,7 @@ public class Conexion {
             pstmt.setInt(1, idCuenta);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                Movimiento movimiento = new Movimiento(rs.getString(2),rs.getTimestamp(3),rs.getBoolean(4), rs.getFloat(5));
+                Movimiento movimiento = new Movimiento(TipoMovimiento.valueOf(rs.getString(2)),rs.getTimestamp(3),rs.getBoolean(4), rs.getFloat(5));
                 result.add(movimiento);
             }
         } catch (SQLException ex) {

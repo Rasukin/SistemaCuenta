@@ -3,25 +3,25 @@ package Model;
 import java.sql.Timestamp;
 
 public class CuentaCorriente extends Cuenta{
-    private  float valorComision;
+    private  int limiteTransaccion;
     
-    public CuentaCorriente(int id, TipoCuenta tipoCuenta, TipoMoneda tipoMoneda, Timestamp fechaApertura,float  tasaInteres, float saldo, float valorComision){
+    public CuentaCorriente(int id, TipoCuenta tipoCuenta, TipoMoneda tipoMoneda, Timestamp fechaApertura,float  tasaInteres, float saldo, int limiteTransaccion){
         this.idCuenta = id;
         this.tipoCuenta = tipoCuenta;
         this.tipoMoneda = tipoMoneda;
         this.fechaApertura = fechaApertura;
         this.tasaInteres = tasaInteres;
         this.saldo = saldo;
-        this.valorComision = valorComision;        
+        this.limiteTransaccion = limiteTransaccion;        
     }
     
-    public CuentaCorriente(TipoCuenta tipoCuenta, TipoMoneda tipoMoneda, Timestamp fechaApertura,float  tasaInteres, float saldo, float valorComision){
+    public CuentaCorriente(TipoCuenta tipoCuenta, TipoMoneda tipoMoneda, Timestamp fechaApertura,float  tasaInteres, float saldo, int limiteTransaccion){
         this.tipoCuenta = tipoCuenta;
         this.tipoMoneda = tipoMoneda;
         this.fechaApertura = fechaApertura;
         this.tasaInteres = tasaInteres;
         this.saldo = saldo;
-        this.valorComision = valorComision;        
+        this.limiteTransaccion = limiteTransaccion;        
     }
     
     public void CobrarComision(){
@@ -33,12 +33,12 @@ public class CuentaCorriente extends Cuenta{
         
     }
 
-    public float getValorComision() {
-        return valorComision;
+    public int getLimiteTransaccion() {
+        return limiteTransaccion;
     }
 
-    public void setValorComision(float valorComision) {
-        this.valorComision = valorComision;
+    public void setLimiteTransaccion(int limiteTransaccion) {
+        this.limiteTransaccion = limiteTransaccion;
     }
 
     public int getIdCuenta() {
