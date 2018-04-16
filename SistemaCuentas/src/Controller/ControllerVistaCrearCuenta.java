@@ -1,7 +1,8 @@
 package Controller;
 
 import AccountsSystem.Conexion;
-import Model.Cuenta;
+import Model.CuentaAhorro;
+import Model.CuentaCorriente;
 import Model.TipoCuenta;
 import Model.TipoMoneda;
 import View.MainFrame;
@@ -10,6 +11,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Timestamp;
+import javax.swing.JOptionPane;
 
 public class ControllerVistaCrearCuenta implements ActionListener{
     private static ControllerVistaCrearCuenta controladorCrearCuenta;
@@ -57,17 +59,22 @@ public class ControllerVistaCrearCuenta implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(vistaCrearCuenta.btnCrear == e.getSource()){
             if(vistaCrearCuenta.btnCrear == e.getSource()){
-                String tipoCuenta = vistaCrearCuenta.cbTipoCuenta.getSelectedItem().toString();
-                String tipoMoneda = vistaCrearCuenta.cbTipoMoneda.getSelectedItem().toString();
+                TipoCuenta tipoCuenta = (TipoCuenta) vistaCrearCuenta.cbTipoCuenta.getSelectedItem();
+                TipoMoneda tipoMoneda = (TipoMoneda) vistaCrearCuenta.cbTipoMoneda.getSelectedItem();
                 Timestamp fechaApertura = new Timestamp(System.currentTimeMillis());
-                //float tasaInteres = conexion.getTasaInteres();
-                if(tipoCuenta == "Ahorro"){
-                    
+                float tasaInteres = (float) 1.65;
+                float valorComision = (float) (12/100);
+                if(tipoCuenta == TipoCuenta.Ahorro){
+                    CuentaAhorro cuentaAhorro = new CuentaAhorro(tipoCuenta, tipoMoneda, fechaApertura, tasaInteres, 0, valorComision);
+                    if(conexion.CrearCuentaAhorro(cuentaAhorro)){
+                        JOptionPane.showMessageDialog(null, "Cuenta de ahorros creado");
+                    }
                 }else{
-                    
+                    CuentaCorriente cuentaCorriente = new CuentaCorriente(tipoCuenta, tipoMoneda, fechaApertura, tasaInteres, 0, valorComision);
+                    if(conexion.CrearCuentaCorriente(cuentaCorriente)){
+                        JOptionPane.showMessageDialog(null, "Cuenta corriente creado");
+                    }
                 }
-                
-                //Cuenta cuenta = new Cuenta(tipoCuenta, tipoMoneda, fechaApertura, tasaInteres, 0);
             }
         }
         if(vistaCrearCuenta.btnSalir == e.getSource()){
