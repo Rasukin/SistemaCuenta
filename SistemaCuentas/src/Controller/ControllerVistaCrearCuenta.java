@@ -17,6 +17,7 @@ public class ControllerVistaCrearCuenta implements ActionListener{
     private static ControllerVistaCrearCuenta controladorCrearCuenta;
     private MainFrame mainFrame;
     private VistaCrearCuenta vistaCrearCuenta;
+    private int idCliente;
     public Conexion conexion;
     
     public static ControllerVistaCrearCuenta getSingletonInstance() {
@@ -41,10 +42,11 @@ public class ControllerVistaCrearCuenta implements ActionListener{
         this.mainFrame = mainFrame;
     }
     
-    public void initInterface() {
+    public void initInterface(int idCliente) {
         conexion = new Conexion();
         mainFrame.setLayout(new BorderLayout());
         mainFrame.getContentPane().add(vistaCrearCuenta);
+        this.idCliente = idCliente;
         this.vistaCrearCuenta.cbTipoCuenta.addItem(TipoCuenta.Ahorro.toString());
         this.vistaCrearCuenta.cbTipoCuenta.addItem(TipoCuenta.Corriente.toString());
         this.vistaCrearCuenta.cbTipoMoneda.addItem(TipoMoneda.Colones.toString());
@@ -53,28 +55,31 @@ public class ControllerVistaCrearCuenta implements ActionListener{
         mainFrame.setResizable(false);
         mainFrame.setVisible(true);
         mainFrame.setDefaultCloseOperation(1);
+        mainFrame.setDefaultCloseOperation(mainFrame.DISPOSE_ON_CLOSE);
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
         if(vistaCrearCuenta.btnCrear == e.getSource()){
             if(vistaCrearCuenta.btnCrear == e.getSource()){
-                TipoCuenta tipoCuenta = (TipoCuenta) vistaCrearCuenta.cbTipoCuenta.getSelectedItem();
-                TipoMoneda tipoMoneda = (TipoMoneda) vistaCrearCuenta.cbTipoMoneda.getSelectedItem();
+                String tipoCuenta = (String) vistaCrearCuenta.cbTipoCuenta.getSelectedItem();
+                String tipoMoneda = (String) vistaCrearCuenta.cbTipoMoneda.getSelectedItem();
                 Timestamp fechaApertura = new Timestamp(System.currentTimeMillis());
                 float tasaInteres = (float) 1.65;
-                float valorComision = (float) (12/100);
-                if(tipoCuenta == TipoCuenta.Ahorro){
-                    CuentaAhorro cuentaAhorro = new CuentaAhorro(tipoCuenta, tipoMoneda, fechaApertura, tasaInteres, 0, valorComision);
-                    if(conexion.CrearCuentaAhorro(cuentaAhorro)){
-                        JOptionPane.showMessageDialog(null, "Cuenta de ahorros creado");
+                float valorComision = (float) 0.40;
+                int limiteTransaccion = 10;
+                if(tipoCuenta.equals("Ahorro")){
+                    CuentaAhorro cuentaAhorro = new CuentaAhorro(TipoCuenta.Ahorro, TipoMoneda.valueOf(tipoMoneda), fechaApertura, tasaInteres, 10000, valorComision);
+                    if(conexion.CrearCuentaAhorro(cuentaAhorro,idCliente)){
+                        JOptionPane.showMessageDialog(null, "Cuenta de ahorros añadida a base d datos");
                     }
                 }else{
-                    CuentaCorriente cuentaCorriente = new CuentaCorriente(tipoCuenta, tipoMoneda, fechaApertura, tasaInteres, 0, valorComision);
-                    if(conexion.CrearCuentaCorriente(cuentaCorriente)){
-                        JOptionPane.showMessageDialog(null, "Cuenta corriente creado");
+                    CuentaCorriente cuentaCorriente = new CuentaCorriente(TipoCuenta.Corriente, TipoMoneda.valueOf(tipoMoneda), fechaApertura, tasaInteres, 10000, limiteTransaccion);
+                    if(conexion.CrearCuentaCorriente(cuentaCorriente,idCliente)){
+                        JOptionPane.showMessageDialog(null, "Cuenta corriente añadida a base de datos");
                     }
                 }
+                mainFrame.dispose();
             }
         }
         if(vistaCrearCuenta.btnSalir == e.getSource()){

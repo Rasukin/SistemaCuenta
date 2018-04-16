@@ -42,10 +42,6 @@ public class VistaCrearCuenta extends javax.swing.JPanel {
 
         jLabel3.setText("Seleccione tipo de moneda: ");
 
-        cbTipoCuenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbTipoMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         btnCrear.setText("Crear");
 
         btnSalir.setText("Salir");

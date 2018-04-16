@@ -30,16 +30,16 @@ public class VistaPrincipal extends javax.swing.JPanel {
         tbClientes = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
-        btnVerCuentas.setText("Ver cuentas del usuario");
+        btnVerCuentas.setText("Ver cuentas del cliente seleccionado");
 
-        btnCrearCuenta.setText("Crear cuenta");
+        btnCrearCuenta.setText("Crear cuenta para cliente seleccionado");
         btnCrearCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearCuentaActionPerformed(evt);
             }
         });
 
-        btnCrearUsuario.setText("Crear usuario");
+        btnCrearUsuario.setText("Crear cliente");
 
         tbClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -70,20 +70,16 @@ public class VistaPrincipal extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
                         .addComponent(btnVerCuentas)
                         .addGap(18, 18, 18)
                         .addComponent(btnCrearCuenta)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCrearUsuario)
-                        .addContainerGap(144, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCrearUsuario))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(0, 381, Short.MAX_VALUE))
-                            .addComponent(jScrollPane2))
-                        .addContainerGap())))
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

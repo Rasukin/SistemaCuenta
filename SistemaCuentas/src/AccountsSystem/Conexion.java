@@ -1,7 +1,6 @@
 package AccountsSystem;
 
 import Model.Cliente;
-import Model.Cuenta;
 import Model.CuentaAhorro;
 import Model.CuentaCorriente;
 import Model.Movimiento;
@@ -23,7 +22,7 @@ public class Conexion {
     public Connection Conexion() {
         try {
             Class.forName("org.postgresql.Driver");
-            this.conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Subasta_DB","postgres","postgres");
+            this.conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/SistemaCuentas","postgres","postgrespsw");
             System.out.println("Opened database SistemaCuentas successfully");
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Error en Conexion: " + e);
@@ -35,7 +34,7 @@ public class Conexion {
     public Conexion(){
         try {
             Class.forName("org.postgresql.Driver");
-            this.conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Subasta_DB","postgres","postgres");
+            this.conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/SistemaCuentas","postgres","postgrespsw");
         } catch (ClassNotFoundException | SQLException e) {
         }    
     }

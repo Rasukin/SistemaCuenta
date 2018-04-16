@@ -81,7 +81,9 @@ public class ControllerVistaPrincipal implements ActionListener{
         if(vistaPrincipal.btnVerCuentas == e.getSource()){
             VistaCuentas vistaCuentas = new VistaCuentas();
             ControllerVistaCuentas controladorVistaCuentas = new ControllerVistaCuentas();
-            controladorVistaCuentas.initInterface();
+            int selectedRow = vistaPrincipal.tbClientes.getSelectedRow();
+            int idCliente = (int) this.vistaPrincipal.tbClientes.getValueAt(selectedRow, 0);
+            controladorVistaCuentas.initInterface(idCliente);
             JFrame frame = new JFrame();
             frame.setLayout(new BorderLayout());
             frame.getContentPane().add(vistaCuentas);
@@ -91,7 +93,9 @@ public class ControllerVistaPrincipal implements ActionListener{
         if(vistaPrincipal.btnCrearCuenta == e.getSource()){
             VistaCrearCuenta vistaCrearCuenta = new VistaCrearCuenta();
             ControllerVistaCrearCuenta controladorVistaCrearCuenta = new ControllerVistaCrearCuenta();
-            controladorVistaCrearCuenta.initInterface();
+            int selectedRow = vistaPrincipal.tbClientes.getSelectedRow();
+            int idCliente = (int) this.vistaPrincipal.tbClientes.getValueAt(selectedRow, 0);
+            controladorVistaCrearCuenta.initInterface(idCliente);
             JFrame frame = new JFrame();
             frame.setLayout(new BorderLayout());
             frame.getContentPane().add(vistaCrearCuenta);
