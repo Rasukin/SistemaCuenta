@@ -10,7 +10,6 @@ import View.VistaPrincipal;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.ListSelectionModel;
@@ -56,15 +55,7 @@ public class ControllerVistaPrincipal implements ActionListener{
         
         vistaPrincipal.tbClientes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         conexion = new Conexion();
-        ArrayList<Cliente> clientes = new ArrayList<Cliente>();
-        Cliente cliente1 = new Cliente(1, "12", "Kafay" , "Ng");
-        Cliente cliente2 = new Cliente(2, "23", "Francisco" , "Monge");
-        Cliente cliente3 = new Cliente(3, "34", "Roberto" , "Liang");
-        Cliente cliente4 = new Cliente(4, "45", "Pedro", "Cespedes");
-        clientes.add(cliente1);
-        clientes.add(cliente2);
-        clientes.add(cliente3);
-        clientes.add(cliente4);
+        ArrayList<Cliente> clientes = conexion.ListarUsuarios();
         this.model = (DefaultTableModel) vistaPrincipal.tbClientes.getModel();
         for(int i=0; i<clientes.size(); i++){
             model.addRow(new Object[]{clientes.get(i).getIdCliente(), clientes.get(i).getCedula(), clientes.get(i).getNombre(), clientes.get(i).getApellido()});
