@@ -94,11 +94,6 @@ public class ControllerVistaPrincipal implements ActionListener{
             int idCliente = Integer.parseInt(this.model.getValueAt(selectedRow, 0).toString());
             VistaCrearCuenta vistaCrearCuenta = new VistaCrearCuenta();
             ControllerVistaCrearCuenta controladorVistaCrearCuenta = new ControllerVistaCrearCuenta();
-<<<<<<< HEAD
-=======
-            int selectedRow = vistaPrincipal.tbClientes.getSelectedRow();
-            int idCliente = (int) this.vistaPrincipal.tbClientes.getValueAt(selectedRow, 0);
->>>>>>> origin/BranchMuestraCuentas
             controladorVistaCrearCuenta.initInterface(idCliente);
             JFrame frame = new JFrame();
             frame.setLayout(new BorderLayout());
