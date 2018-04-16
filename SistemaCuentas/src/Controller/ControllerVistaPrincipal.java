@@ -68,7 +68,7 @@ public class ControllerVistaPrincipal implements ActionListener{
         if(vistaPrincipal.btnVerCuentas == e.getSource()){
             VistaCuentas vistaCuentas = new VistaCuentas();
             ControllerVistaCuentas controladorVistaCuentas = new ControllerVistaCuentas();
-            //controladorVistaCuentas.initInferface();
+            controladorVistaCuentas.initInterface();
             JFrame frame = new JFrame();
             frame.setLayout(new BorderLayout());
             frame.getContentPane().add(vistaCuentas);
