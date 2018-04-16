@@ -6,17 +6,20 @@
 package Model;
 
 public class Cliente {
+<<<<<<< HEAD
     private int idCliente;    
+=======
+    private int idCliente;
+>>>>>>> Beta1
     private String cedula;
     private String nombre;
     private String apellido;
 
-    public int getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(int idCliente) {
+    public Cliente(int idCliente, String cedula, String nombre, String apellido){
         this.idCliente = idCliente;
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.apellido = apellido;
     }
     
     public Cliente(String cedula, String nombre, String apellido){
@@ -24,6 +27,23 @@ public class Cliente {
         this.nombre = nombre;
         this.apellido = apellido;
     }
+    
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+<<<<<<< HEAD
+    
+    public Cliente(String cedula, String nombre, String apellido){
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.apellido = apellido;
+    }
+=======
+>>>>>>> Beta1
     
     public String getCedula() {
         return cedula;

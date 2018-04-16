@@ -36,6 +36,7 @@ public class Conexion {
         }    
     }
     
+<<<<<<< HEAD
     public boolean CrearCliente(Cliente cliente){
         String cedula = cliente.getCedula();
         String nombre = cliente.getNombre();
@@ -84,6 +85,18 @@ public class Conexion {
     public ArrayList<Cliente> ListarUsuarios(){
         ArrayList<Cliente> result = new ArrayList<Cliente>();
         //ArrayList<ArrayList<String>> resultOut = new ArrayList<ArrayList<String>>();
+=======
+    public boolean CrearUsuario(Cliente cliente){//String cedula, String nombre, String apellidos){
+        String cedulta = cliente.getCedula();
+        String nombre = cliente.getNombre();
+        String apellidos = cliente.getApellido();
+        
+        return true;
+    }  
+    
+    public ArrayList<Cliente> ListarUsuarios(){
+        ArrayList<Cliente> result = new ArrayList<Cliente>();
+>>>>>>> Beta1
         
         return result;
     }
