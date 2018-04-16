@@ -36,15 +36,20 @@ public class VistaCuentas extends javax.swing.JPanel {
 
         tbCuentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "hola", "asdf", "gf", "er", "xzcv", "fg"},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Id de cuenta", "Tipo de cuenta", "Cliente", "Moneda", "Fecha de apertura", "Tasa de interes", "Saldo"
+                "ID Cuenta", "Tipo Cuenta", "Tipo Moneda", "Fecha Apertura", "Tasa Interés", "Saldo", "ID Cliente", "Valor Comisión", "Límite Transacción"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tbCuentas);
 
         btnListarMovimientos.setText("Listar movimientos de la cuenta");
