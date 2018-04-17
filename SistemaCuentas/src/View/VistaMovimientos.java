@@ -39,11 +39,11 @@ public class VistaMovimientos extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID Movimiento", "Tipo Movimiento", "Fecha", "Monto", "Exento"
+                "Tipo Movimiento", "Fecha", "Exento", "Monto"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

@@ -5,10 +5,6 @@
  */
 package Model;
 
-/**
- *
- * @author Francisco
- */
 public enum TipoMovimiento {
-    Deposito, Retiro, PagoInteres, CobroComision, CobroComercio, RetiroCajero;
+    Debito, Credito, PagoInteres, CobroComision, CobroComercio, RetiroCajero;
 }

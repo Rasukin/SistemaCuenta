@@ -4,12 +4,10 @@ import AccountsSystem.Conexion;
 import Model.TipoMovimiento;
 import View.MainFrame;
 import View.VistaCuentas;
-import View.VistaMovimientos;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.JFrame;
 import java.util.Random;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -86,29 +84,14 @@ public class ControllerVistaCuentas implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(vistaCuenta.btnListarMovimientos == e.getSource()){
-            System.out.println("btnListarMovimientos");
-            
+        if(vistaCuenta.btnListarMovimientos == e.getSource()){            
             int filaSeleccionada = vistaCuenta.tbCuentas.getSelectedRow();
-            try{
-                String value = (String) vistaCuenta.tbCuentas.getValueAt(filaSeleccionada, 0);
-                System.out.println(value);
-            } catch(Exception ex){
-                System.out.println("Error en: \n" + ex);
-            }
-            
-            VistaMovimientos vistaMovimientos = new VistaMovimientos();
+            String idCuenta = (String) vistaCuenta.tbCuentas.getValueAt(filaSeleccionada, 0);
             ControllerVistaMovimientos controladorVistaMovimientos = new ControllerVistaMovimientos();
-            controladorVistaMovimientos.initInterface();
-            JFrame frame = new JFrame();
-            frame.setLayout(new BorderLayout());
-            frame.getContentPane().add(vistaMovimientos);
-            frame.pack();
-            frame.setResizable(false);
+            controladorVistaMovimientos.initInterface(Integer.parseInt(idCuenta));
         }
         
         if(vistaCuenta.btnGenerarMovimientos == e.getSource()){
-            System.out.println("btnGenerarMovimientos");
             
             int filaSeleccionada = vistaCuenta.tbCuentas.getSelectedRow();
             try{

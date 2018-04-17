@@ -22,7 +22,7 @@ public class Conexion {
     public Connection Conexion() {
         try {
             Class.forName("org.postgresql.Driver");
-            this.conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/SistemaCuentas","postgres","12345678");
+            this.conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/SistemaCuentas","postgres","postgrespsw");
             System.out.println("Opened database SistemaCuentas successfully");
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Error en Conexion: " + e);
@@ -34,7 +34,7 @@ public class Conexion {
     public Conexion(){
         try {
             Class.forName("org.postgresql.Driver");
-            this.conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/SistemaCuentas","postgres","12345678");
+            this.conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/SistemaCuentas","postgres","postgrespsw");
         } catch (ClassNotFoundException | SQLException e) {
         }    
     }
@@ -111,6 +111,29 @@ public class Conexion {
         return false;      
     } 
     
+    public boolean CrearMovimiento(Movimiento movimiento, int idCuenta){
+        String tipo = movimiento.getTipoMovimiento().toString();
+        Timestamp fecha = movimiento.getFecha();
+        boolean excento = movimiento.isExcento();
+        Float monto = movimiento.getMonto();
+        try {            
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM crearmovimiento(?,?,?,?,?)");
+            pstmt.setString(1, tipo);
+            pstmt.setTimestamp(2, fecha);
+            pstmt.setBoolean(3, excento);
+            pstmt.setFloat(4, monto);
+            pstmt.setInt(5, idCuenta);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {  
+                System.out.println("Movimiento añadido a base de datos");
+                return true;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error en CrearMovimiento: " + ex);
+        }        
+        return false;      
+    }
+    
     public ArrayList<Cliente> ListarUsuarios(){
         ArrayList<Cliente> result = new ArrayList<Cliente>();
         try {
@@ -163,9 +186,10 @@ public class Conexion {
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM listarmovimientos(?)");
             pstmt.setInt(1, idCuenta);
             ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
+            while (rs.next()) {                
                 Movimiento movimiento = new Movimiento(TipoMovimiento.valueOf(rs.getString(2)),rs.getTimestamp(3),rs.getBoolean(4), rs.getFloat(5));
                 result.add(movimiento);
+               
             }
         } catch (SQLException ex) {
             System.out.println("Error en ListarMovimientos: " + ex);
@@ -173,12 +197,18 @@ public class Conexion {
         return result;
     }
     
-    public void Credito(Float monto){
-    
-    }
-    
-    public void Debito(Float monto){
-    
+    public void ActualizarSaldo(int idCuenta, Float saldo){
+        try {            
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM actualizarsaldo(?,?)");
+            pstmt.setInt(1, idCuenta);
+            pstmt.setFloat(2, saldo);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {  
+                System.out.println("Movimiento añadido a base de datos");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error en ActualizarSaldo: " + ex);
+        }
     }
     
     public void GenerarRegistro(){
