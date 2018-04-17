@@ -106,7 +106,7 @@ public class ControllerVistaCuentas implements ActionListener{
             int filaSeleccionada = vistaCuenta.tbCuentas.getSelectedRow();
             try{
                 String tipoCuenta = (String) vistaCuenta.tbCuentas.getValueAt(filaSeleccionada, 1);
-                if(tipoCuenta == "Ahorro"){
+                if(tipoCuenta.equals("Ahorro")){
                     flagCuenta = true;
                     cuentaAhorro.setIdCuenta(Integer.parseInt((String) vistaCuenta.tbCuentas.getValueAt(filaSeleccionada, 0)));
                     cuentaAhorro.setTasaInteres(Float.parseFloat((String) vistaCuenta.tbCuentas.getValueAt(filaSeleccionada, 4)));
@@ -114,6 +114,7 @@ public class ControllerVistaCuentas implements ActionListener{
                     cuentaAhorro.setValorComision(Float.parseFloat((String) vistaCuenta.tbCuentas.getValueAt(filaSeleccionada, 7)));
                 }
                 else{
+                    System.out.println("entro al esle");
                     cuentaCorriente.setIdCuenta(Integer.parseInt((String) vistaCuenta.tbCuentas.getValueAt(filaSeleccionada, 0)));
                     cuentaCorriente.setTasaInteres(Float.parseFloat((String) vistaCuenta.tbCuentas.getValueAt(filaSeleccionada, 4)));
                     cuentaCorriente.setSaldo(Float.parseFloat((String) vistaCuenta.tbCuentas.getValueAt(filaSeleccionada, 5)));
@@ -121,7 +122,7 @@ public class ControllerVistaCuentas implements ActionListener{
                 }
                 System.out.println(tipoCuenta);
             } catch(Exception ex){
-                System.out.println("Error en: \n" + ex);
+                System.out.println("Error btnGenerar en: \n" + ex);
             }
             
             final float montoMin = 5000;
@@ -143,32 +144,34 @@ public class ControllerVistaCuentas implements ActionListener{
             for (int i = 0; i < randCantMov; i++) {
                 tipoMov = random.nextInt(TipoMovimiento.values().length);     
                 randSaldo = montoMin + (float)Math.random() * (montoMax - montoMin);
-                System.out.println(listaMov[tipoMov].toString() + "---"+String.valueOf(randSaldo));
+                //System.out.println(listaMov[tipoMov].toString() + "---"+String.valueOf(randSaldo));
                 
-                switch (listaMov[tipoMov].toString()) {
-                    case "Deposito":
-                        System.out.println("entro al caso deposito");
+                switch (listaMov[0].toString()){//listaMov[tipoMov].toString()) {
+                    case "Credito":
+                        System.out.println("entro al caso Credito");
                         fecha = new Timestamp(System.currentTimeMillis());
                         movimiento = new Movimiento(listaMov[tipoMov], fecha, false, randSaldo);
+                        conexion.CrearMovimiento(movimiento, cuentaID);
                         if (flagCuenta) {
                             cuentaAhorro.credito(randSaldo);
+                            conexion.ActualizarSaldo(cuentaID, cuentaAhorro.getSaldo());    
                         }else{
                             cuentaCorriente.credito(randSaldo);
+                            conexion.ActualizarSaldo(cuentaID, cuentaCorriente.getSaldo());
                         }
-                        conexion.CrearMovimiento(movimiento, cuentaID);
-                        conexion.ActualizarSaldo(cuentaID, randSaldo);
                         break;
-                    case "Retiro":
-                        System.out.println("Entro al caso Retiro");
+                    case "Debito":
+                        System.out.println("Entro al caso Debito");
                         fecha = new Timestamp(System.currentTimeMillis());
                         movimiento = new Movimiento(listaMov[tipoMov], fecha, false, randSaldo);
+                        conexion.CrearMovimiento(movimiento, cuentaID);
                         if (flagCuenta) {
                             cuentaAhorro.debito(randSaldo);
+                            conexion.ActualizarSaldo(cuentaID, cuentaAhorro.getSaldo());
                         }else{
                             cuentaCorriente.debito(randSaldo);
+                            conexion.ActualizarSaldo(cuentaID, cuentaCorriente.getSaldo());
                         }
-                        conexion.CrearMovimiento(movimiento, cuentaID);
-                        conexion.ActualizarSaldo(cuentaID, randSaldo);
                         break;
                     case "PagoInteres":
                         System.out.println("Este es el caso PagoIntereses");
@@ -177,13 +180,14 @@ public class ControllerVistaCuentas implements ActionListener{
                             cuentaAhorro.pagoInteres();
                             intereses = cuentaAhorro.getSaldo() * cuentaAhorro.getTasaInteres();
                             movimiento = new Movimiento(listaMov[tipoMov], fecha, false, intereses);
+                            conexion.ActualizarSaldo(cuentaID, cuentaAhorro.getSaldo());
                         }else{
                             cuentaCorriente.pagoInteres();
                             intereses = cuentaCorriente.getSaldo() * cuentaCorriente.getTasaInteres();
                             movimiento = new Movimiento(listaMov[tipoMov], fecha, false, intereses);
+                            conexion.ActualizarSaldo(cuentaID, cuentaCorriente.getSaldo());
                         }
                         conexion.CrearMovimiento(movimiento, cuentaID);
-                        conexion.ActualizarSaldo(cuentaID, intereses);
                         break;
                     case "CobroComision":System.out.println("Este es el caso CobroComision");
                         fecha = new Timestamp(System.currentTimeMillis());
@@ -192,37 +196,40 @@ public class ControllerVistaCuentas implements ActionListener{
                             cuentaAhorro.cobrarComision();
                             intereses = cuentaAhorro.getSaldo() - (cuentaAhorro.getSaldo() * (float) 0.2);
                             movimiento = new Movimiento(listaMov[tipoMov], fecha, false, intereses);
+                            conexion.ActualizarSaldo(cuentaID, cuentaAhorro.getSaldo());
                         }else{
                             cuentaCorriente.cobrarComision();
                             intereses = cuentaCorriente.getSaldo() - (cuentaCorriente.getSaldo() * (float) 0.2);
                             movimiento = new Movimiento(listaMov[tipoMov], fecha, false, intereses);
+                            conexion.ActualizarSaldo(cuentaID, cuentaCorriente.getSaldo());
                         }
                         conexion.CrearMovimiento(movimiento, cuentaID);
-                        conexion.ActualizarSaldo(cuentaID, intereses);
                         break;
                     case "CobroComercio": System.out.println("Este es el caso CobroComercio");
                         fecha = new Timestamp(System.currentTimeMillis());
                         movimiento = new Movimiento(listaMov[tipoMov], fecha, false, randSaldo);
                         if (flagCuenta) {
                             cuentaAhorro.debito(randSaldo);
+                            conexion.ActualizarSaldo(cuentaID, cuentaAhorro.getSaldo());
                         }else{
                             cuentaCorriente.debito(randSaldo);
+                            conexion.ActualizarSaldo(cuentaID, cuentaCorriente.getSaldo());
                         }
                         conexion.CrearMovimiento(movimiento, cuentaID);
-                        conexion.ActualizarSaldo(cuentaID, randSaldo);
                         break;
                     case "RetiroCajero":System.out.println("Este es el caso RetiroCajero");
                         fecha = new Timestamp(System.currentTimeMillis());
                         movimiento = new Movimiento(listaMov[tipoMov], fecha, false, randSaldo);
                         if (flagCuenta) {
                             cuentaAhorro.debito(randSaldo);
+                            conexion.ActualizarSaldo(cuentaID, cuentaAhorro.getSaldo());
                         }else{
                             cuentaCorriente.debito(randSaldo);
+                            conexion.ActualizarSaldo(cuentaID, cuentaCorriente.getSaldo());
                         }
                         conexion.CrearMovimiento(movimiento, cuentaID);
-                        conexion.ActualizarSaldo(cuentaID, randSaldo);
                     default:
-                        System.out.println("esete es caso default");
+                        System.out.println(listaMov[tipoMov].toString());
                 }
             }
         }

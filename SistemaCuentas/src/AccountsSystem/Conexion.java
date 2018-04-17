@@ -119,7 +119,7 @@ public class Conexion {
         try {            
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM crearmovimiento(?,?,?,?,?)");
             pstmt.setString(1, tipo);
-            pstmt.setTimestamp(2, fecha);
+            pstmt.setString(2, fecha.toString());
             pstmt.setBoolean(3, excento);
             pstmt.setFloat(4, monto);
             pstmt.setInt(5, idCuenta);
