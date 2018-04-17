@@ -70,7 +70,9 @@ public abstract class Cuenta {
     }
     
     public void debito(float monto){
-        this.saldo = this.saldo - monto;
+        if(this.saldo > monto){
+            this.saldo = this.saldo - monto;
+        }
     }
     
     public void generarRegistro(){

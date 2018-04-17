@@ -24,6 +24,8 @@ public class CuentaCorriente extends Cuenta{
         this.limiteTransaccion = limiteTransaccion;        
     }
     
+    public CuentaCorriente(){};
+    
     public void cobrarComision(){
         this.saldo = this.saldo - (this.saldo * (float) 0.2);
     }

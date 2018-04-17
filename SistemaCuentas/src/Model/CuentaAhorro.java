@@ -25,6 +25,8 @@ public class CuentaAhorro extends Cuenta{
         this.valorComision = valorComision;        
     }
     
+    public CuentaAhorro(){}
+    
     public void cobrarComision(){
         this.saldo = this.saldo - (this.saldo * this.valorComision);
     }
